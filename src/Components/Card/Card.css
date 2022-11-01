@@ -1,0 +1,28 @@
+.card {
+    width: 100%;
+}
+
+.flex {
+    display: flex;
+}
+
+.flex_direction_column {
+    flex-direction: column;
+}
+
+.align_items_center{
+    align-items: center;
+}
+
+.justify_content_center{
+    justify-content: center;
+}
+
+.justify_content_space_between {
+    justify-content: space-between;
+}
+
+
+.card_description {
+    width: 100%;
+}
