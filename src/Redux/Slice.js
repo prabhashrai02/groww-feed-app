@@ -12,7 +12,7 @@ export const fetchImages = createAsyncThunk(
         console.log(state.feedData.pageNumber)
         const startURL = `https://api.unsplash.com/photos?page=`;
         const pgNumber = String(state.feedData.pageNumber);
-        const endURL = `&per_page=5&client_id=wFZqNpZO3hcazvogHpwT5_1_xoqoenqJF63mjI2M-4g`;
+        const endURL = `&per_page=10&client_id=wFZqNpZO3hcazvogHpwT5_1_xoqoenqJF63mjI2M-4g`;
         
         const response = await fetch(startURL + pgNumber + endURL)
         const result = await response.json()
