@@ -9,7 +9,6 @@ export const fetchImages = createAsyncThunk(
     `fetchImages`, 
     async (_ , thunkAPI) => {
         const state = thunkAPI.getState();
-        console.log(state.feedData.pageNumber)
         const startURL = `https://api.unsplash.com/photos?page=`;
         const pgNumber = String(state.feedData.pageNumber);
         const endURL = `&per_page=10&client_id=wFZqNpZO3hcazvogHpwT5_1_xoqoenqJF63mjI2M-4g`;
