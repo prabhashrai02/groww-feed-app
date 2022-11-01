@@ -1,5 +1,10 @@
 .card {
-    width: 100%;
+    width: 20rem;
+    padding: 1rem;
+    margin: 1rem 1rem;
+    background: var(--cardColor);
+	box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+    border-radius: 2rem;
 }
 
 .flex {
@@ -18,11 +23,37 @@
     justify-content: center;
 }
 
+.justify_content_space_around {
+    justify-content: space-around;
+}
+
 .justify_content_space_between {
     justify-content: space-between;
 }
 
+.data_img {
+    height: 20rem;
+    width: 20rem;
+}
 
 .card_description {
     width: 100%;
+}
+
+.card_image {
+    width: 20rem;
+    height: 18rem;
+    background: var(--cardColor);
+	box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+}
+
+.card_description {
+    background: var(--cardColor);
+	box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+    border-radius: 1rem;
+    margin: 1rem 0;
+}
+
+@media only screen and (max-width: 600px) {
+
 }
