@@ -45,7 +45,7 @@ function Profile() {
                     <div className="user_profile">
                         <div className="user_detail flex flex_wrap_wrap align_items_center justify_content_space_around">
                             <div className="view_zero_post no_user">
-                            Couldn't find User!!!
+                            {state?.errors}!!!
                             </div>
                         </div>
                     </div>
