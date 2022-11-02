@@ -57,12 +57,20 @@ function Profile() {
                         <button className="view_button flex justify_content_space_around" onClick={changeToListView}><AiOutlineUnorderedList className="icon_size"/></button>
                         <button className="view_button flex justify_content_space_around" onClick={changeToGridView}><TfiLayoutGrid2 className="icon_size"/></button>
                     </div>
-                    <div className="user_photos">
+                    <div className="user_photos flex justify_content_center">
                         {
                             listView && <ListView data={state?.photos}/>
                         }
                         {
                             !listView && <GridView data={state?.photos} />
+                        }
+                        {
+                            state && state.photos && !state.length && (
+                                <div className="view_zero_post">
+                                    No Post Yet!!!
+                                </div>
+
+                            )
                         }
                     </div>
                 </div>

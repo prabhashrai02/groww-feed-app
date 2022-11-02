@@ -48,6 +48,15 @@
     border-radius: 2rem;
 }
 
+.view_zero_post {
+    text-align: center;
+    padding: 3rem 4rem;
+    background: var(--cardColor);
+    border: 2px solid black;
+	box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+    border-radius: 0.5rem;
+}
+
 .icon_size {
     font-size: 1.2rem;
 }
