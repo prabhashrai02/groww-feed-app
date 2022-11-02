@@ -17,10 +17,11 @@ function Profile() {
     const [noUserFound, setNoUserFound] = useState(false);
 
     useEffect(() => {
-        console.log(state)
         if (Number(state?.photos?.length) === 0) setEmpty(true);
-        if (state?.errors) setNoUserFound(true);
         else setEmpty(false);
+        
+        if (state?.errors) setNoUserFound(true);
+        else setNoUserFound(false);
     }, [state])
 
     useEffect(() => {
