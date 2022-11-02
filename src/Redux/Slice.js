@@ -2,7 +2,7 @@ import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
     error: '',
-    pageNumber: 0,
+    pageNumber: 1,
     imageList: [],
     userName: 'me',
     userDetail: {},

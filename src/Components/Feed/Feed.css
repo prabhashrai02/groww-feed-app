@@ -4,6 +4,17 @@
     width: 100%;
 }
 
+.feed_error {
+    margin-top: 4rem;
+    min-width: 20vw;
+    text-align: center;
+    padding: 3rem 4rem;
+    background: var(--cardColor);
+    border: 2px solid black;
+	box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+    border-radius: 0.5rem;
+}
+
 .loader {
     display: inline-block;
     margin: 1rem 42%;
