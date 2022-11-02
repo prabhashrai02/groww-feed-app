@@ -1,8 +1,9 @@
-import { useSelector } from "react-redux";
 import Card from "../Card/Card";
 
-function ListView() {
-    const state = useSelector((state) => state.feedData.imageList)
+function ListView(props) {
+  let state = [];
+  if (props.data) state = props.data;
+  
     const imageList = state.map((data) => <Card data={data} key={data.id}/>);
 
     return (

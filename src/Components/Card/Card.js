@@ -4,8 +4,10 @@ import { useDispatch } from "react-redux";
 import { userNameChanged, fetchUser } from "../../Redux/Slice";
 
 function Card(props) {
+    let data = [];
+    if (props.data) data = props.data;
+
     const dispatch = useDispatch();
-    const data = props.data;
 
     function changeUser() {
         dispatch(userNameChanged(data.user.username));
@@ -13,16 +15,20 @@ function Card(props) {
     }
     
     return (
-        <div key={data.id} className="card flex flex_direction_column">
-            <img src={data.urls.small} alt={data.alt_description} className="card_image"/>
-            <div className="flex card_description justify_content_space_around">
-                    <p>
-                    <Link to="/profile">
-                        <span onClick={changeUser}>{data.user.username}</span>
-                    </Link>
-                    </p>
-                    <p>{data.likes}</p>
-            </div>
+        <div key={data?.id} className="card flex flex_direction_column">
+            <img src={data?.urls?.small} alt={data?.alt_description} className="card_image"/>
+                {
+                    data.user && data.likes && (
+                    <div className="flex card_description justify_content_space_around">
+                        <p>
+                            <Link to="/profile">
+                            <span onClick={changeUser}>{data?.user?.username}</span>
+                            </Link>
+                            </p>
+                        <p>{data.likes}</p>
+                    </div>
+                    )
+                }
         </div>
     );
 }

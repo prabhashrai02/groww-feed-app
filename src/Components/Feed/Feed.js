@@ -17,13 +17,12 @@ function Feed() {
     return (
         <div className="feed flex justify_content_center">
             <InfiniteScroll
-                // dataLength={pageNumber * 10}
                 loadMore={loadMore}
                 hasMore={true}
                 loader={<div className="loader" key={0}>Loading ...</div>}
                 useWindow={true}
             >
-                <ListView />
+                <ListView data={state}/>
             </InfiniteScroll>
         </div>
     );
