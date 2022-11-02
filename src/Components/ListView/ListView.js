@@ -3,7 +3,6 @@ import Card from "../Card/Card";
 
 function ListView() {
     const state = useSelector((state) => state.feedData.imageList)
-    console.log(state)
     const imageList = state.map((data) => <Card data={data} key={data.id}/>);
 
     return (

@@ -13,6 +13,11 @@
 
 .flex_direction_column {
     flex-direction: column;
+    
+}
+
+.flex_wrap_wrap {
+    flex-wrap: wrap;
 }
 
 .align_items_center{

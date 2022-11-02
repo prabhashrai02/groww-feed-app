@@ -1,5 +1,30 @@
 .profile {
-    background-color: rgb(87, 78, 102);
+    background-color: #263138;
     width: 100%;
+    height: 100%;
+    min-height: 100vh;
+}
+
+.user_profile {
+    width: 80%;
+}
+
+.profile_pic {
+    max-width: 30vw;
+    max-height: 30vw;
+    width: 10rem;
     height: 10rem;
+    border-radius: 50%;
+}
+
+.user_detail {
+    padding: 1rem;
+    margin: 1rem;
+    background: var(--cardColor);
+	box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+    border-radius: 2rem;
+}
+
+.user_data {
+    width: 100%;
 }
