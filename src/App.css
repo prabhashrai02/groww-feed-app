@@ -26,3 +26,7 @@
 .justify_content_space_between {
   justify-content: space-between;
 }
+
+.text_align_center {
+  text-align: center;
+}

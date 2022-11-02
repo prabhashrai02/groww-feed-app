@@ -23,7 +23,7 @@ function Profile() {
                 {/* <button onClick={chng}>load user</button> */}
                 <div className="user_detail flex flex_wrap_wrap align_items_center justify_content_space_around">
                     <img src={state?.profile_image?.large} alt="profile pic" className="profile_pic"/>
-                    <div className="user_data">
+                    <div className="user_data text_align_center">
                         <h4>{state?.name}</h4>
                         <div className="flex flex_wrap_wrap justify_content_center">
                             <h5><i>{state?.bio}</i></h5>
