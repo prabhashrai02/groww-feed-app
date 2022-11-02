@@ -7,7 +7,7 @@ function GridView(props) {
     const imageList = state.map((data) => <Card data={data} key={data.id}/>);
 
     return (
-        <div className="gridView flex flex_wrap_wrap align_items_center">
+        <div className="gridView flex flex_wrap_wrap align_items_center justify_content_space_around">
         {
           imageList.map(
             (project, index) => {

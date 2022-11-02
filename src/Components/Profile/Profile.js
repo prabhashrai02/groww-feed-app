@@ -49,7 +49,7 @@ function Profile() {
                     </div>
                     <div className="user_photos">
                         {/* <ListView data={state?.photos}/> */}
-                        <GridView data={state?.photos}/>
+                        <GridView data={state?.photos} />
                     </div>
                 </div>
             </div>
