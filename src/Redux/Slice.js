@@ -11,27 +11,46 @@ const initialState = {
 export const fetchImages = createAsyncThunk(
     `fetchImages`, 
     async (_ , thunkAPI) => {
-        const state = thunkAPI.getState();
-        const startURL = `https://api.unsplash.com/photos?page=`;
-        const pgNumber = String(state.feedData.pageNumber);
-        const endURL = `&per_page=10&client_id=wFZqNpZO3hcazvogHpwT5_1_xoqoenqJF63mjI2M-4g`;
-        
-        const response = await fetch(startURL + pgNumber + endURL)
-        const result = await response.json()
-        return result;
+        try {
+            const state = thunkAPI.getState();
+            const startURL = `https://api.unsplash.com/photos?page=`;
+            const pgNumber = String(state.feedData.pageNumber);
+            const endURL = `&per_page=10&client_id=wFZqNpZO3hcazvogHpwT5_1_xoqoenqJF63mjI2M-4g`;
+            
+            const response = await fetch(startURL + pgNumber + endURL)
+            const result = await response.json()
+
+            if (result["errors"]) {
+                return thunkAPI.rejectWithValue("Some error occured");
+            }
+
+            return result;
+        }
+        catch(error) {
+            return thunkAPI.rejectWithValue("Some error occured");
+        }
 })
 
 export const fetchUser = createAsyncThunk(
     `fetchUser`, 
     async (_ , thunkAPI) => {
-        const state = thunkAPI.getState();
-        const startURL = `https://api.unsplash.com/users/`;
-        const userName = String(state.feedData.userName);
-        const endURL = `?client_id=V4w_mAMz--_6DNlrFggMb4pq715Si8LRyjqBSImmQoM`;
-        
-        const response = await fetch(startURL + userName + endURL)
-        const result = await response.json()
-        return result;
+        try {
+            const state = thunkAPI.getState();
+            const startURL = `https://api.unsplash.com/users/`;
+            const userName = String(state.feedData.userName);
+            const endURL = `?client_id=V4w_mAMz--_6DNlrFggMb4pq715Si8LRyjqBSImmQoM`;
+            
+            const response = await fetch(startURL + userName + endURL)
+            const result = await response.json()
+
+            if (result["errors"]) {
+                return thunkAPI.rejectWithValue(result);
+            }
+            return result;
+        }
+        catch(error) {
+            return thunkAPI.rejectWithValue("error");
+        }
 })
 
 export const Slice = createSlice({
@@ -43,6 +62,9 @@ export const Slice = createSlice({
         },
         userNameChanged: (state, arg) => {
             state.userName = arg.payload;
+        },
+        removeError: (state, arg) => {
+            state.error = arg.payload;
         }
     },
     extraReducers: {
@@ -61,5 +83,5 @@ export const Slice = createSlice({
     }
 });
 
-export const { nextPage, userNameChanged } = Slice.actions;
+export const { nextPage, userNameChanged, removeError } = Slice.actions;
 export default Slice.reducer;

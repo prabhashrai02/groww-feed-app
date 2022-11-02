@@ -2,14 +2,14 @@ import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import "./Profile.css";
 import { useSelector, useDispatch } from "react-redux";
-import { fetchUser, userNameChanged } from "../../Redux/Slice";
+import { fetchUser, userNameChanged, removeError } from "../../Redux/Slice";
 import { AiOutlineUnorderedList } from "react-icons/ai";
 import { TfiLayoutGrid2 } from "react-icons/tfi";
 import ListView from "../ListView/ListView";
 import GridView from "../GridView/GridView";
 
 function Profile() {
-    const state = useSelector((state) => state.feedData.userDetail);
+    const state = useSelector((state) => state.feedData);
     const dispatch = useDispatch();
     const { userName } = useParams();
     const [listView, setListView] = useState(false);
@@ -17,11 +17,22 @@ function Profile() {
     const [noUserFound, setNoUserFound] = useState(false);
 
     useEffect(() => {
-        if (Number(state?.photos?.length) === 0) setEmpty(true);
+        return () => dispatch(removeError(''))
+    }, [])
+
+    useEffect(() => {
+        setNoUserFound(false);
+        
+        if (Number(state?.userDetail?.photos?.length) === 0) setEmpty(true);
         else setEmpty(false);
         
-        if (state?.errors) setNoUserFound(true);
-        else setNoUserFound(false);
+        if (state?.userDetail?.username !== undefined) {
+            dispatch(removeError(''));
+        }
+        else {
+            setNoUserFound(true);
+        }
+
     }, [state])
 
     useEffect(() => {
@@ -45,7 +56,7 @@ function Profile() {
                     <div className="user_profile">
                         <div className="user_detail flex flex_wrap_wrap align_items_center justify_content_space_around">
                             <div className="view_zero_post no_user">
-                            {state?.errors}!!!
+                            {state?.error?.errors}!!!
                             </div>
                         </div>
                     </div>
@@ -55,22 +66,22 @@ function Profile() {
                 !noUserFound && (
                     <div className="user_profile">
                         <div className="user_detail flex flex_wrap_wrap align_items_center justify_content_space_around">
-                            <img src={state?.profile_image?.large} alt="profile pic" className="profile_pic"/>
+                            <img src={state?.userDetail?.profile_image?.large} alt="profile pic" className="profile_pic"/>
                             <div className="user_data text_align_center">
-                                <h4>{state?.name}</h4>
+                                <h4>{state?.userDetail?.name}</h4>
                                 <div className="flex flex_wrap_wrap justify_content_center">
-                                    <h5><i>{state?.bio}</i></h5>
+                                    <h5><i>{state?.userDetail?.bio}</i></h5>
                                     <div className="user_data flex flex_wrap_wrap justify_content_space_around">
                                         <h4>
-                                            <p>{state?.followers_count}</p>
+                                            <p>{state?.userDetail?.followers_count}</p>
                                             <p>Followers</p>
                                         </h4>
                                         <h4>
-                                            <p>{state?.following_count}</p>
+                                            <p>{state?.userDetail?.following_count}</p>
                                             <p>Following</p>
                                         </h4>
                                         <h4>
-                                            <p>{state?.photos?.length}</p>
+                                            <p>{state?.userDetail?.photos?.length}</p>
                                             <p>Photos</p>
                                         </h4>
                                     </div>
@@ -82,10 +93,10 @@ function Profile() {
                             </div>
                             <div className="user_photos flex justify_content_center">
                                 {
-                                    listView && <ListView data={state?.photos}/>
+                                    listView && <ListView data={state?.userDetail?.photos}/>
                                 }
                                 {
-                                    !listView && <GridView data={state?.photos} />
+                                    !listView && <GridView data={state?.userDetail?.photos} />
                                 }
                                 {
                                     empty && (
