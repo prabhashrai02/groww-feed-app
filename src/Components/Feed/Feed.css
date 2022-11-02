@@ -1,4 +1,4 @@
 .feed {
-    background-color: rgb(123, 81, 190);
+    background-color: var(--darkBackground);
     width: 100%;
 }
