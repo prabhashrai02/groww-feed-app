@@ -1,7 +1,8 @@
 .navbar {
+    color: white;
     position: fixed;
     top: 0;
-    background-color: rgb(172, 169, 177);
+    background-color: var(--darkNavbar);
     padding: 1rem;
     width: 100%;
 }
