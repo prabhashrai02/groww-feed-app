@@ -44,6 +44,7 @@
     
     .listView .card {
         width: 15rem;
+        padding: 1rem;
     }
 
     .card_image {
