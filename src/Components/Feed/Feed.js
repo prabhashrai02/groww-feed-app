@@ -15,7 +15,7 @@ function Feed() {
     }
 
     return (
-        <div className="feed">
+        <div className="feed flex justify_content_center">
             <InfiniteScroll
                 // dataLength={pageNumber * 10}
                 loadMore={loadMore}

@@ -31,11 +31,6 @@
     justify-content: space-between;
 }
 
-.data_img {
-    height: 20rem;
-    width: 20rem;
-}
-
 .card_description {
     width: 100%;
 }
@@ -55,5 +50,11 @@
 }
 
 @media only screen and (max-width: 600px) {
+    .card {
+        width: 16rem;
+    }
 
+    .card_image {
+        width: 16rem;
+    }
 }
