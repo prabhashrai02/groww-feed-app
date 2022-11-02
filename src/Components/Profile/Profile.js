@@ -13,6 +13,7 @@ function Profile() {
     const [listView, setListView] = useState(false);
 
     useEffect(() => {
+        window.scrollTo(0, 0);
         dispatch(userNameChanged(userName));
         dispatch(fetchUser());
     }, [userName])
