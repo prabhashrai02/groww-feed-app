@@ -7,7 +7,7 @@
     position: fixed;
     top: 0;
     background-color: var(--navbarColor);
-    padding: 1rem;
+    padding: 1rem 0;
     width: 100%;
 }
 
@@ -17,6 +17,7 @@
 
 .navbar_logo {
     height: 1.5rem;
+    margin-right: 0.5rem;
 }
 
 .theme_button {
