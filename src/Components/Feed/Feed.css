@@ -1,4 +1,5 @@
 .feed {
+    margin-top: 3rem;
     background-color: var(--darkBackground);
     width: 100%;
 }
