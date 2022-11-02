@@ -39,6 +39,7 @@ button {
   cursor: pointer;
 }
 
-a {
+a , button{
   text-decoration: none;
+  color: var(--textColor);
 }
