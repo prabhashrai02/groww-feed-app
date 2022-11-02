@@ -16,6 +16,7 @@
 
 .theme_button {
     width: 5rem;
+    padding: 0.4rem 0;
     background: var(--cardColor);
 	box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
     border-radius: 2rem;
