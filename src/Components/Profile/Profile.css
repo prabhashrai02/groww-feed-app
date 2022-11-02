@@ -1,5 +1,6 @@
 .profile {
     margin-top: var(--basicMargin);
+    padding-bottom: var(--basicMargin);
     background-color: var(--backgroundColor);
     width: 100%;
     height: 100%;
