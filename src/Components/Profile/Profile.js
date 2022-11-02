@@ -1,4 +1,5 @@
 import { useEffect } from "react";
+import { useParams } from "react-router-dom";
 import "./Profile.css";
 import { useSelector, useDispatch } from "react-redux";
 import { fetchUser, userNameChanged } from "../../Redux/Slice";
@@ -8,12 +9,12 @@ import GridView from "../GridView/GridView";
 function Profile() {
     const state = useSelector((state) => state.feedData.userDetail);
     const dispatch = useDispatch();
-    const userName = window.location.hash.slice(10);
+    const { userName } = useParams();
 
     useEffect(() => {
         dispatch(userNameChanged(userName));
         dispatch(fetchUser());
-    }, [])
+    }, [userName])
     
 
     function chng() {

@@ -12,7 +12,7 @@ function App() {
           <Navbar />
           <Routes>        
           <Route exact path='/feed' element={<Feed />} />
-          <Route exact path='/profile/:id' element={<Profile />} />
+          <Route exact path='/profile/:userName' element={<Profile />} />
           <Route path="*" element={<Navigate replace to="/Feed" />} />
           </Routes>
         </div>
