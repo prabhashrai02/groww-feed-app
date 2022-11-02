@@ -25,14 +25,14 @@ function Card(props) {
                 {
                     data && data.user && (
                     <div className="flex card_description justify_content_space_around">
-                        <p>
+                        <div>
                             <Link to={url}>
                                 <div className='flex align_items_center'>
                                     <CgProfile className='user_icons' />
                                     <span onClick={changeUser}>{data?.user?.username}</span>
                                 </div>
                             </Link>
-                        </p>
+                        </div>
                         <div className='flex align_items_center'>
                             <AiOutlineLike className='user_icons'/>
                             <p>{data.likes}</p>
