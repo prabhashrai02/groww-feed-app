@@ -25,6 +25,10 @@
     margin: 1rem 0;
 }
 
+.user_icons {
+    margin-right: 0.3rem;
+}
+
 @media only screen and (max-width: 600px) {
     .card {
         width: 16rem;

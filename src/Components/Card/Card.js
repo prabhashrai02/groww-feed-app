@@ -1,6 +1,8 @@
 import './Card.css';
 import { Link } from "react-router-dom";
 import { useDispatch } from "react-redux";
+import { CgProfile } from "react-icons/cg";
+import { AiOutlineLike } from "react-icons/ai";
 import { userNameChanged, fetchUser } from "../../Redux/Slice";
 
 function Card(props) {
@@ -25,10 +27,16 @@ function Card(props) {
                     <div className="flex card_description justify_content_space_around">
                         <p>
                             <Link to={url}>
-                            <span onClick={changeUser}>{data?.user?.username}</span>
+                                <div className='flex align_items_center'>
+                                    <CgProfile className='user_icons' />
+                                    <span onClick={changeUser}>{data?.user?.username}</span>
+                                </div>
                             </Link>
-                            </p>
-                        <p>{data.likes}</p>
+                        </p>
+                        <div className='flex align_items_center'>
+                            <AiOutlineLike className='user_icons'/>
+                            <p>{data.likes}</p>
+                        </div>
                     </div>
                     )
                 }
