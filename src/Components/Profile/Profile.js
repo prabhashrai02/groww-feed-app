@@ -3,6 +3,8 @@ import { useParams } from "react-router-dom";
 import "./Profile.css";
 import { useSelector, useDispatch } from "react-redux";
 import { fetchUser, userNameChanged } from "../../Redux/Slice";
+import { AiOutlineUnorderedList } from "react-icons/ai";
+import { TfiLayoutGrid2 } from "react-icons/tfi";
 import ListView from "../ListView/ListView";
 import GridView from "../GridView/GridView";
 
@@ -52,8 +54,8 @@ function Profile() {
                         </div>
                     </div>
                     <div className="view flex justify_content_space_around">
-                        <button className="view_button" onClick={changeToListView}>List View</button>
-                        <button className="view_button" onClick={changeToGridView}>Grid View</button>
+                        <button className="view_button flex justify_content_space_around" onClick={changeToListView}><AiOutlineUnorderedList className="icon_size"/></button>
+                        <button className="view_button flex justify_content_space_around" onClick={changeToGridView}><TfiLayoutGrid2 className="icon_size"/></button>
                     </div>
                     <div className="user_photos">
                         {
