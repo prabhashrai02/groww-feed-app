@@ -13,6 +13,12 @@ function Profile() {
     const dispatch = useDispatch();
     const { userName } = useParams();
     const [listView, setListView] = useState(false);
+    const [empty, setEmpty] = useState(false);
+
+    useEffect(() => {
+        if (Number(state?.photos?.length) === 0) setEmpty(true);
+        else setEmpty(false);
+    }, [state])
 
     useEffect(() => {
         window.scrollTo(0, 0);
@@ -65,7 +71,7 @@ function Profile() {
                             !listView && <GridView data={state?.photos} />
                         }
                         {
-                            state && state.photos && !state.length && (
+                            empty && (
                                 <div className="view_zero_post">
                                     No Post Yet!!!
                                 </div>

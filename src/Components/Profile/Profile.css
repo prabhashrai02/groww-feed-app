@@ -49,6 +49,7 @@
 }
 
 .view_zero_post {
+    min-width: 20vw;
     text-align: center;
     padding: 3rem 4rem;
     background: var(--cardColor);

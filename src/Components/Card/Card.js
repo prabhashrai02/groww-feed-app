@@ -16,7 +16,6 @@ function Card(props) {
 
     function changeUser() {
         dispatch(userNameChanged(data.user.username));
-        dispatch(fetchUser());
     }
 
     return (
