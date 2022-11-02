@@ -19,7 +19,7 @@ function Feed() {
             <InfiniteScroll
                 loadMore={loadMore}
                 hasMore={true}
-                loader={<div className="loader" key={0}>Loading ...</div>}
+                loader={<div className="loader" key={0}/>}
                 useWindow={true}
             >
                 <ListView data={state}/>
