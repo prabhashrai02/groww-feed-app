@@ -3,18 +3,20 @@ import { useState } from 'react';
 import { Link } from "react-router-dom";
 
 function Navbar() {
-    const [darkTheme, setdarkTheme] = useState(false);
+    const [selectedTheme, setSelectedTheme] = useState('light_theme');
     const [theme, setTheme] = useState('Light');
 
     function changeTheme () {
-        if (darkTheme) {
-            setdarkTheme(false);
-            setTheme('Light');
-        }
-        else {
-            setdarkTheme(true);
+        if (theme === 'Light') {
+            setSelectedTheme('dark_theme');
             setTheme('Dark');
         }
+        else {
+            setSelectedTheme('light_theme');
+            setTheme('Light');
+        }
+
+        document.body.className = selectedTheme;
     }
 
     function scrollToTop() {
