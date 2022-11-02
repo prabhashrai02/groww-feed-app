@@ -21,13 +21,13 @@ export const fetchImages = createAsyncThunk(
             const result = await response.json()
 
             if (result["errors"]) {
-                return thunkAPI.rejectWithValue("Some error occured");
+                return thunkAPI.rejectWithValue(result);
             }
 
             return result;
         }
         catch(error) {
-            return thunkAPI.rejectWithValue("Some error occured");
+            return thunkAPI.rejectWithValue(error);
         }
 })
 
