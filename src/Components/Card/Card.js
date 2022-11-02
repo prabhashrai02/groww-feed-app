@@ -24,7 +24,7 @@ function Card(props) {
             <img src={data?.urls?.small} alt={data?.alt_description} className="card_image"/>
                 {
                     data && data.user && (
-                    <div className="flex card_description justify_content_space_around">
+                    <div className="flex card_description align_items_center justify_content_space_around">
                         <div>
                             <Link to={url}>
                                 <div className='flex align_items_center'>
