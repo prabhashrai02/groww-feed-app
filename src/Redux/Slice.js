@@ -1,6 +1,7 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
+    error: '',
     pageNumber: 0,
     imageList: [],
     userName: 'me',
@@ -48,9 +49,14 @@ export const Slice = createSlice({
         [fetchImages.fulfilled]: (state, action) => {
             state.imageList = [...state.imageList, ...action.payload];
         },
-
+        [fetchImages.rejected]: (state, action) => {
+            state.error = action.payload;
+        },
         [fetchUser.fulfilled]: (state, action) => {
             state.userDetail = JSON.parse(JSON.stringify(action.payload));
+        },
+        [fetchUser.rejected]: (state, action) => {
+            state.error = action.payload;
         },
     }
 });

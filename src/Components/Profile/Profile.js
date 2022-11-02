@@ -1,21 +1,23 @@
 import { useEffect } from "react";
 import "./Profile.css";
 import { useSelector, useDispatch } from "react-redux";
-import { fetchUser } from "../../Redux/Slice";
+import { fetchUser, userNameChanged } from "../../Redux/Slice";
 import ListView from "../ListView/ListView";
 import GridView from "../GridView/GridView";
 
 function Profile() {
     const state = useSelector((state) => state.feedData.userDetail);
     const dispatch = useDispatch();
+    const userName = window.location.hash.slice(10);
 
     useEffect(() => {
+        dispatch(userNameChanged(userName));
         dispatch(fetchUser());
     }, [])
     
 
     function chng() {
-        console.log(state.photos)
+        console.log(state)
     }
     return (
         <div className="profile flex flex_direction_column align_items_center">
