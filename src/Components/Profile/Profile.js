@@ -14,9 +14,12 @@ function Profile() {
     const { userName } = useParams();
     const [listView, setListView] = useState(false);
     const [empty, setEmpty] = useState(false);
+    const [noUserFound, setNoUserFound] = useState(false);
 
     useEffect(() => {
+        console.log(state)
         if (Number(state?.photos?.length) === 0) setEmpty(true);
+        if (state?.errors) setNoUserFound(true);
         else setEmpty(false);
     }, [state])
 
@@ -36,51 +39,65 @@ function Profile() {
 
     return (
         <div className="profile flex flex_direction_column align_items_center">
-            <div className="user_profile">
-                <div className="user_detail flex flex_wrap_wrap align_items_center justify_content_space_around">
-                    <img src={state?.profile_image?.large} alt="profile pic" className="profile_pic"/>
-                    <div className="user_data text_align_center">
-                        <h4>{state?.name}</h4>
-                        <div className="flex flex_wrap_wrap justify_content_center">
-                            <h5><i>{state?.bio}</i></h5>
-                            <div className="user_data flex flex_wrap_wrap justify_content_space_around">
-                                <h4>
-                                    <p>{state?.followers_count}</p>
-                                    <p>Followers</p>
-                                </h4>
-                                <h4>
-                                    <p>{state?.following_count}</p>
-                                    <p>Following</p>
-                                </h4>
-                                <h4>
-                                    <p>{state?.photos?.length}</p>
-                                    <p>Photos</p>
-                                </h4>
+            {
+                noUserFound && (
+                    <div className="user_profile">
+                        <div className="user_detail flex flex_wrap_wrap align_items_center justify_content_space_around">
+                            <div className="view_zero_post no_user">
+                            Couldn't find User!!!
                             </div>
                         </div>
                     </div>
-                    <div className="view flex justify_content_space_around">
-                        <button className="view_button flex justify_content_space_around" onClick={changeToListView}><AiOutlineUnorderedList className="icon_size"/></button>
-                        <button className="view_button flex justify_content_space_around" onClick={changeToGridView}><TfiLayoutGrid2 className="icon_size"/></button>
-                    </div>
-                    <div className="user_photos flex justify_content_center">
-                        {
-                            listView && <ListView data={state?.photos}/>
-                        }
-                        {
-                            !listView && <GridView data={state?.photos} />
-                        }
-                        {
-                            empty && (
-                                <div className="view_zero_post">
-                                    No Post Yet!!!
+                )
+            }
+            {
+                !noUserFound && (
+                    <div className="user_profile">
+                        <div className="user_detail flex flex_wrap_wrap align_items_center justify_content_space_around">
+                            <img src={state?.profile_image?.large} alt="profile pic" className="profile_pic"/>
+                            <div className="user_data text_align_center">
+                                <h4>{state?.name}</h4>
+                                <div className="flex flex_wrap_wrap justify_content_center">
+                                    <h5><i>{state?.bio}</i></h5>
+                                    <div className="user_data flex flex_wrap_wrap justify_content_space_around">
+                                        <h4>
+                                            <p>{state?.followers_count}</p>
+                                            <p>Followers</p>
+                                        </h4>
+                                        <h4>
+                                            <p>{state?.following_count}</p>
+                                            <p>Following</p>
+                                        </h4>
+                                        <h4>
+                                            <p>{state?.photos?.length}</p>
+                                            <p>Photos</p>
+                                        </h4>
+                                    </div>
                                 </div>
-
-                            )
-                        }
-                    </div>
-                </div>
-            </div>
+                            </div>
+                            <div className="view flex justify_content_space_around">
+                                <button className="view_button flex justify_content_space_around" onClick={changeToListView}><AiOutlineUnorderedList className="icon_size"/></button>
+                                <button className="view_button flex justify_content_space_around" onClick={changeToGridView}><TfiLayoutGrid2 className="icon_size"/></button>
+                            </div>
+                            <div className="user_photos flex justify_content_center">
+                                {
+                                    listView && <ListView data={state?.photos}/>
+                                }
+                                {
+                                    !listView && <GridView data={state?.photos} />
+                                }
+                                {
+                                    empty && (
+                                        <div className="view_zero_post">
+                                            No Post Yet!!!
+                                        </div>
+                                    )
+                                }
+                            </div>
+                        </div>
+                    </div>                    
+                )
+            }
         </div>
     );
 }

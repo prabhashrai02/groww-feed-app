@@ -7,6 +7,10 @@
     min-height: 100vh;
 }
 
+.no_user {
+    margin: 2rem 0;
+}
+
 .user_profile {
     width: 90%;
 }
