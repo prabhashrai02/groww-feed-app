@@ -1,13 +1,13 @@
 {
   "files": {
-    "main.css": "/groww-feed-app/static/css/main.a2ab9c14.css",
+    "main.css": "/groww-feed-app/static/css/main.7d221f05.css",
     "main.js": "/groww-feed-app/static/js/main.f1e077c8.js",
     "index.html": "/groww-feed-app/index.html",
-    "main.a2ab9c14.css.map": "/groww-feed-app/static/css/main.a2ab9c14.css.map",
+    "main.7d221f05.css.map": "/groww-feed-app/static/css/main.7d221f05.css.map",
     "main.f1e077c8.js.map": "/groww-feed-app/static/js/main.f1e077c8.js.map"
   },
   "entrypoints": [
-    "static/css/main.a2ab9c14.css",
+    "static/css/main.7d221f05.css",
     "static/js/main.f1e077c8.js"
   ]
 }
