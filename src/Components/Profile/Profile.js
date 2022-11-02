@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import "./Profile.css";
 import { useSelector, useDispatch } from "react-redux";
@@ -10,20 +10,24 @@ function Profile() {
     const state = useSelector((state) => state.feedData.userDetail);
     const dispatch = useDispatch();
     const { userName } = useParams();
+    const [listView, setListView] = useState(false);
 
     useEffect(() => {
         dispatch(userNameChanged(userName));
         dispatch(fetchUser());
     }, [userName])
     
-
-    function chng() {
-        console.log(state)
+    function changeToGridView() {
+        setListView(false);
     }
+    
+    function changeToListView() {
+        setListView(true);
+    }
+
     return (
         <div className="profile flex flex_direction_column align_items_center">
             <div className="user_profile">
-                {/* <button onClick={chng}>load user</button> */}
                 <div className="user_detail flex flex_wrap_wrap align_items_center justify_content_space_around">
                     <img src={state?.profile_image?.large} alt="profile pic" className="profile_pic"/>
                     <div className="user_data text_align_center">
@@ -47,12 +51,16 @@ function Profile() {
                         </div>
                     </div>
                     <div className="view flex justify_content_space_around">
-                        <button className="view_button">List View</button>
-                        <button className="view_button">Grid View</button>
+                        <button className="view_button" onClick={changeToListView}>List View</button>
+                        <button className="view_button" onClick={changeToGridView}>Grid View</button>
                     </div>
                     <div className="user_photos">
-                        {/* <ListView data={state?.photos}/> */}
-                        <GridView data={state?.photos} />
+                        {
+                            listView && <ListView data={state?.photos}/>
+                        }
+                        {
+                            !listView && <GridView data={state?.photos} />
+                        }
                     </div>
                 </div>
             </div>
