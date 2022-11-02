@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import ListView from "../ListView/ListView";
 import "./Feed.css";
-import { fetchImages, nextPage } from "../../Redux/Slice";
+import { fetchImages, nextPage, removeError } from "../../Redux/Slice";
 import InfiniteScroll from 'react-infinite-scroller';
 
 
@@ -14,16 +14,16 @@ function Feed() {
 
     useEffect(() => {
         dispatch(fetchImages());
+        return () => dispatch(removeError(''));
     }, [])
 
     useEffect(() => {
-        console.log(state)
-
         if (state.imageList.length === 0) {
-            setNoData(true)
+            setNoData(true);
         }
         else {
-            setNoData(false)
+            setNoData(false);
+            dispatch(removeError(''));
         }
 
     }, [state])
