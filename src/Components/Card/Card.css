@@ -1,10 +1,15 @@
 .card {
     width: 20rem;
     padding: 1rem;
-    margin: 1rem 0.2rem;
+    margin: 1rem 0;
     background: var(--cardColor);
 	box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
     border-radius: 2rem;
+}
+
+
+.listView .card {
+    margin: 1rem 0.2rem;
 }
 
 .card_description {
@@ -29,12 +34,39 @@
     margin-right: 0.3rem;
 }
 
-@media only screen and (max-width: 600px) {
+@media only screen and (max-width: 900px) {
     .card {
-        width: 16rem;
+        width: 39vw;
+        max-width: 15rem;
+        padding: 0;
+    }
+
+    
+    .listView .card {
+        width: 15rem;
     }
 
     .card_image {
-        width: 16rem;
+        width: 100%;
+        max-width: 20rem;
+    }
+}
+
+@media only screen and (max-width: 600px) {
+    .card {
+        width: 39vw;
+        max-width: 20rem;
+        padding: 0;
+    }
+
+    
+    .listView .card {
+        width: 15rem;
+    }
+
+    .card_image {
+        width: 100%;
+        max-width: 20rem;
+        max-height: 12rem;
     }
 }
