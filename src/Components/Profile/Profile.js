@@ -21,7 +21,6 @@ function Profile() {
     }, [])
 
     useEffect(() => {
-        dispatch(removeError(''));
         setNoUserFound(false);
         
         if (Number(state?.userDetail?.photos?.length) === 0) setEmpty(true);
