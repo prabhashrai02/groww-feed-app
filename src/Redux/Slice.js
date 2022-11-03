@@ -94,14 +94,18 @@ export const Slice = createSlice({
 
         [fetchUser.fulfilled]: (state, action) => {
             if (!cacheUser.has(url)) {
-                if (cacheUser.size < 1000) cacheUser.set(url, action.payload);
+                const data = action.payload;
+                if (cacheUser.size < 1000) cacheUser.set(url, data);
                 else {
                     const deleteKeys = Array.from(cacheUser.keys()).splice(0, 1);
                     for (const key of deleteKeys) cacheUser.delete(key);
     
                     cacheUser.set(url, action.payload);
                 }
-                state.userDetail = JSON.parse(JSON.stringify(action.payload));
+                state.userDetail = JSON.parse(JSON.stringify(data));
+            }
+            else {
+                state.userDetail = JSON.parse(JSON.stringify(cacheUser.get(url)));
             }
         },
         [fetchUser.rejected]: (state, action) => {
