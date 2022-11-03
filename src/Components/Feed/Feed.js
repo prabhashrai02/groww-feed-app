@@ -43,26 +43,28 @@ function Feed() {
 
     return (
         <div className="feed flex justify_content_center">
-            {
-                errorOccured && (
-                    <div className="feed_error">
-                        {state.error?.errors}!!!
-                    </div>
-                )
-            }
-            {
-                !noData && (
-                    <InfiniteScroll
-                        initialLoad={false}
-                        loadMore={loadMore}
-                        hasMore={true}
-                        loader={<div className="loader" key={0}/>}
-                        useWindow={true}
-                    >
-                        <ListView data={state?.imageList}/>
-                    </InfiniteScroll>
-                )
-            }
+            <div className="feed_container">
+                {
+                    errorOccured && (
+                        <div className="feed_error">
+                            {state.error?.errors}!!!
+                        </div>
+                    )
+                }
+                {
+                    !noData && (
+                        <InfiniteScroll
+                            initialLoad={false}
+                            loadMore={loadMore}
+                            hasMore={true}
+                            loader={<div className="loader" key={0}/>}
+                            useWindow={true}
+                        >
+                            <ListView data={state?.imageList}/>
+                        </InfiniteScroll>
+                    )
+                }
+            </div>
         </div>
     );
 }

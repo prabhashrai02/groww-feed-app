@@ -4,6 +4,15 @@
     width: 100%;
 }
 
+.feed_container {
+    margin-top: 2rem;
+    text-align: center;
+    padding: 3rem 4rem;
+    background: var(--cardColor);
+	box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+    border-radius: 0.5rem;
+}
+
 .feed_error {
     margin-top: 4rem;
     min-width: 20vw;
@@ -29,4 +38,11 @@
 @keyframes spin {
     0% { transform: rotate(0deg); }
     100% { transform: rotate(360deg); }
+}
+
+@media only screen and (max-width: 600px) {
+
+    .feed_container {
+        padding: 1rem 0.1rem;
+    }
 }
