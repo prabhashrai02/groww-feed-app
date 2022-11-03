@@ -9,6 +9,8 @@ const initialState = {
     userDetail: {},
 };
 
+let url = '';
+
 export const fetchImages = createAsyncThunk(
     `fetchImages`, 
     async (_ , thunkAPI) => {
@@ -17,10 +19,10 @@ export const fetchImages = createAsyncThunk(
             const startURL = `https://api.unsplash.com/photos?page=`;
             const pgNumber = String(state.feedData.pageNumber);
             const endURL = `&per_page=10&client_id=wFZqNpZO3hcazvogHpwT5_1_xoqoenqJF63mjI2M-4g`;
-            const url = startURL + pgNumber + endURL;
+            url = startURL + pgNumber + endURL;
 
             if (cacheImages.has(url)) {
-                return cacheImages[url];
+                return;
             }
 
             const response = await fetch(url)
@@ -29,8 +31,6 @@ export const fetchImages = createAsyncThunk(
             if (result["errors"]) {
                 return thunkAPI.rejectWithValue(result);
             }
-
-            if (cacheImages.size < 1000) cacheImages.set(url, result);
 
             return result;
         }
@@ -47,10 +47,10 @@ export const fetchUser = createAsyncThunk(
             const startURL = `https://api.unsplash.com/users/`;
             const userName = String(state.feedData.userName);
             const endURL = `?client_id=V4w_mAMz--_6DNlrFggMb4pq715Si8LRyjqBSImmQoM`;
-            const url = startURL + userName + endURL;
+            url = startURL + userName + endURL;
 
             if (cacheUser.has(url)) {
-                return cacheUser[url];
+                return;
             }
 
             const response = await fetch(startURL + userName + endURL)
@@ -59,16 +59,6 @@ export const fetchUser = createAsyncThunk(
             if (result["errors"]) {
                 return thunkAPI.rejectWithValue(result);
             }
-            
-            if (cacheUser.size < 2) cacheUser.set(url, result);
-            else {
-                const deleteKeys = Array.from(cacheUser.keys()).splice(0, 1);
-                for (const key of deleteKeys) cacheUser.delete(key);
-
-                cacheUser.set(url, result);
-            }
-
-            console.log(cacheUser)
 
             return result;
         }
@@ -93,13 +83,26 @@ export const Slice = createSlice({
     },
     extraReducers: {
         [fetchImages.fulfilled]: (state, action) => {
-            state.imageList = [...state.imageList, ...action.payload];
+            if (!cacheImages.has(url)) {
+                if (cacheImages.size < 1000) cacheImages.set(url, action.payload)
+                state.imageList = [...state.imageList, ...action.payload];
+            }
         },
         [fetchImages.rejected]: (state, action) => {
             state.error = action.payload;
         },
+
         [fetchUser.fulfilled]: (state, action) => {
-            state.userDetail = JSON.parse(JSON.stringify(action.payload));
+            if (!cacheUser.has(url)) {
+                if (cacheUser.size < 1000) cacheUser.set(url, action.payload);
+                else {
+                    const deleteKeys = Array.from(cacheUser.keys()).splice(0, 1);
+                    for (const key of deleteKeys) cacheUser.delete(key);
+    
+                    cacheUser.set(url, action.payload);
+                }
+                state.userDetail = JSON.parse(JSON.stringify(action.payload));
+            }
         },
         [fetchUser.rejected]: (state, action) => {
             state.error = action.payload;
