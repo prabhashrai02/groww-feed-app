@@ -1,5 +1,5 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import { cacheImages } from '../App';
+import { cacheImages, cacheUser} from '../App';
 
 const initialState = {
     error: '',
@@ -31,6 +31,7 @@ export const fetchImages = createAsyncThunk(
             }
 
             if (cacheImages.size < 1000) cacheImages.set(url, result);
+
             return result;
         }
         catch(error) {
@@ -46,13 +47,29 @@ export const fetchUser = createAsyncThunk(
             const startURL = `https://api.unsplash.com/users/`;
             const userName = String(state.feedData.userName);
             const endURL = `?client_id=V4w_mAMz--_6DNlrFggMb4pq715Si8LRyjqBSImmQoM`;
-            
+            const url = startURL + userName + endURL;
+
+            if (cacheUser.has(url)) {
+                return cacheUser[url];
+            }
+
             const response = await fetch(startURL + userName + endURL)
             const result = await response.json()
 
             if (result["errors"]) {
                 return thunkAPI.rejectWithValue(result);
             }
+            
+            if (cacheUser.size < 2) cacheUser.set(url, result);
+            else {
+                const deleteKeys = Array.from(cacheUser.keys()).splice(0, 1);
+                for (const key of deleteKeys) cacheUser.delete(key);
+
+                cacheUser.set(url, result);
+            }
+
+            console.log(cacheUser)
+
             return result;
         }
         catch(error) {

@@ -5,6 +5,7 @@ import Profile from './Components/Profile/Profile';
 import { Routes, Route, Navigate, HashRouter as Router } from 'react-router-dom';
 
 export const cacheImages = new Map();
+export let cacheUser = new Map();
 
 function App() {
   return (
