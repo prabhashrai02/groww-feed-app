@@ -11,6 +11,7 @@ function Feed() {
     const dispatch = useDispatch();
 
     const [noData, setNoData] = useState(false);
+    const [errorOccured, setErrorOccured] = useState(false);
 
     useEffect(() => {
         dispatch(fetchImages());
@@ -26,6 +27,13 @@ function Feed() {
             dispatch(removeError(''));
         }
 
+        if (state.error !== '') {
+            setErrorOccured(true);
+        }
+        else {
+            setErrorOccured(false);
+        }
+
     }, [state])
 
     function loadMore() {
@@ -36,7 +44,7 @@ function Feed() {
     return (
         <div className="feed flex justify_content_center">
             {
-                noData && (
+                errorOccured && (
                     <div className="feed_error">
                         {state.error?.errors}!!!
                     </div>
