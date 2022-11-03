@@ -8,6 +8,8 @@
     top: 0;
     background-color: var(--navbarColor);
     padding: 1rem 0;
+    border-bottom: 1px solid black;
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
     width: 100%;
 }
 
