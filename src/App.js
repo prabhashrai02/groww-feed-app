@@ -4,6 +4,8 @@ import Feed from './Components/Feed/Feed';
 import Profile from './Components/Profile/Profile';
 import { Routes, Route, Navigate, HashRouter as Router } from 'react-router-dom';
 
+export const cacheImages = new Map();
+
 function App() {
   return (
     <>

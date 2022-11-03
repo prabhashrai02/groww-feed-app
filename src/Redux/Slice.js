@@ -1,4 +1,5 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import { cacheImages } from '../App';
 
 const initialState = {
     error: '',
@@ -16,14 +17,20 @@ export const fetchImages = createAsyncThunk(
             const startURL = `https://api.unsplash.com/photos?page=`;
             const pgNumber = String(state.feedData.pageNumber);
             const endURL = `&per_page=10&client_id=wFZqNpZO3hcazvogHpwT5_1_xoqoenqJF63mjI2M-4g`;
-            
-            const response = await fetch(startURL + pgNumber + endURL)
+            const url = startURL + pgNumber + endURL;
+
+            if (cacheImages.has(url)) {
+                return cacheImages[url];
+            }
+
+            const response = await fetch(url)
             const result = await response.json()
 
             if (result["errors"]) {
                 return thunkAPI.rejectWithValue(result);
             }
 
+            if (cacheImages.size < 1000) cacheImages.set(url, result);
             return result;
         }
         catch(error) {
