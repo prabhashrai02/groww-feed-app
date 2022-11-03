@@ -36,7 +36,7 @@
 
 .user_photos {
     margin: 2rem 0;
-    width: 100%;
+    width: 95%;
 }
 
 .view {
@@ -65,8 +65,17 @@
     font-size: 1.2rem;
 }
 
-@media only screen and (max-width: 600px) {
+@media only screen and (max-width: 900px) {
+    .user_photos {
+        width: 90%;
+    }
+}
+@media only screen and (max-width: 700px) {
     .user_profile {
         width: 100vw;
+    }
+
+    .user_photos {
+        width: 100%;
     }
 }

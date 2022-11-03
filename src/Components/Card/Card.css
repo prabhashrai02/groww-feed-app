@@ -38,9 +38,8 @@
     .card {
         width: 39vw;
         max-width: 15rem;
-        max-height:18rem;
+        max-height: 18rem;
         padding: 0;
-        margin: 1rem 0.5rem;
     }
 
     
@@ -52,7 +51,6 @@
     .card_image {
         width: 100%;
         max-width: 20rem;
-        max-height: 20rem;
     }
 }
 
@@ -60,18 +58,23 @@
     .card {
         width: 39vw;
         max-width: 20rem;
-        height: 9rem;
+        max-height: 10rem;
         padding: 0;
-        margin: 1rem 0;
     }
 
     
     .listView .card {
         width: 15rem;
+        max-height: 100%;
     }
 
     .card_image {
+        width: 100%;
         max-width: 20rem;
         max-height: 10rem;
+    }
+
+    .listView .card_image {
+        max-height: 12rem;
     }
 }
