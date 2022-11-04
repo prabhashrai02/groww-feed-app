@@ -32,5 +32,6 @@ npm start
 ## Other Features that can be implemented
 * Comments, Likes, Reactions can be added.
 ## Screenshot
-![image](https://user-images.githubusercontent.com/73634195/199658532-0e0772c9-5d2c-417c-8314-c980b847386b.png)
+![image](https://user-images.githubusercontent.com/73634195/199815021-b4d0fef6-9b79-484f-adde-b9d5b3c32939.png)
+
 ![image](https://user-images.githubusercontent.com/73634195/199658573-f3bada16-4f3e-4b2b-9540-dea244be107e.png)
