@@ -1,7 +1,6 @@
 import Card from "../Card/Card";
 
 function ImageView(props) {
-    console.log(props)
   let state = [];
   if (props.data) state = props.data;
   
