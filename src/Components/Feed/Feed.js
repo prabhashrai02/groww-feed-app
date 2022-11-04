@@ -14,17 +14,20 @@ function Feed() {
     const [errorOccured, setErrorOccured] = useState(false);
 
     useEffect(() => {
+        // fetch images when component is loaded initially
         dispatch(fetchImages());
-        return () => dispatch(removeError(''));
+
+        // remove error while closing component
+        return () => dispatch(removeError());
     }, [])
 
     useEffect(() => {
-        if (state.imageList.length === 0) {
+        if (state.imageList.length !== 0) {
             setNoData(true);
         }
         else {
             setNoData(false);
-            dispatch(removeError(''));
+            dispatch(removeError());
         }
 
         if (state.error !== '') {

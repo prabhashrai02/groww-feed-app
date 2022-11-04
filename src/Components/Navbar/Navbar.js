@@ -16,6 +16,7 @@ function Navbar() {
             setTheme('Light');
         }
 
+        // select theme for whole page from user input
         document.body.className = selectedTheme;
     }
 

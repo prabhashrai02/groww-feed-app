@@ -77,15 +77,18 @@ export const Slice = createSlice({
         userNameChanged: (state, arg) => {
             state.userName = arg.payload;
         },
-        removeError: (state, arg) => {
-            state.error = arg.payload;
+        removeError: (state) => {
+            state.error = '';
         },
         removeUser: (state) => {
             state.userDetail = {};
         }
     },
     extraReducers: {
+        // checks for async fetching of feed Images
         [fetchImages.fulfilled]: (state, action) => {
+            
+            // cacheImages map is used to cache the feed images and avoid extra API calls
             if (!cacheImages.has(url)) {
                 if (cacheImages.size < 1000) cacheImages.set(url, action.payload)
                 state.imageList = [...state.imageList, ...action.payload];
@@ -95,7 +98,10 @@ export const Slice = createSlice({
             state.error = action.payload;
         },
 
+        // checks for async fetching of Userdetail
         [fetchUser.fulfilled]: (state, action) => {
+
+            // cacheUser map is used to cache the user details and avoid extra API calls
             if (!cacheUser.has(url)) {
                 const data = action.payload;
                 if (cacheUser.size < 1000) cacheUser.set(url, data);

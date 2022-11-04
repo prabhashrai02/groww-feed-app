@@ -8,6 +8,7 @@ import { LazyLoadImage } from "react-lazy-load-image-component";
 import { Blurhash } from "react-blurhash-async"
 
 function Card(props) {
+    const dispatch = useDispatch();
 
     let data = [];
     let url = '';
@@ -17,12 +18,11 @@ function Card(props) {
         url = `/profile/${data?.user?.username}`;
     }
 
-    const dispatch = useDispatch();
-
     function changeUser() {
         dispatch(userNameChanged(data.user.username));
     }
 
+    // store blur image for placeholder till the original image is loaded
     const blurImage = <Blurhash className='card_image' hash={data?.blur_hash} width={"var(--cardImageWidth)"} height={"var(--cardImageHeight)"} punch={1} />;
 
 

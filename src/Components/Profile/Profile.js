@@ -19,32 +19,37 @@ function Profile() {
     const [searchingUser, setSearchingUser] = useState(false);
 
     useEffect(() => {
-        return () => dispatch(removeError(''))
-    }, [])
-
-    useEffect(() => {
         setNoUserFound(false);
         setSearchingUser(false)
         
+        // handle the empty image
         if (Number(state?.userDetail?.photos?.length) === 0) setEmpty(true);
         else setEmpty(false);
         
+        // handle no useer with given username
         if (state?.userDetail?.username !== undefined) {
-            dispatch(removeError(''));
+            dispatch(removeError());
         }
         else {
             setNoUserFound(true)
         }
     }, [state])
 
+    // handle changing url directly
     useEffect(() => {
         window.scrollTo(0, 0);
         dispatch(userNameChanged(userName));
         fetchNewUser()
     }, [urlHistory])
+
+    // removed global error while closing component
+    useEffect(() => {
+        return () => dispatch(removeError())
+    }, [])
     
     function fetchNewUser() {
-        setSearchingUser(true)
+        setNoUserFound(false);
+        setSearchingUser(true);
         dispatch(removeUser());
         dispatch(fetchUser());
     }
