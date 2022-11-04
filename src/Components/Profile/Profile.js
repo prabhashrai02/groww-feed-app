@@ -15,6 +15,7 @@ function Profile() {
     const [listView, setListView] = useState(false);
     const [empty, setEmpty] = useState(false);
     const [noUserFound, setNoUserFound] = useState(false);
+    const [searchingUser, setSearchingUser] = useState(false);
 
     useEffect(() => {
         return () => dispatch(removeError(''))
@@ -22,6 +23,7 @@ function Profile() {
 
     useEffect(() => {
         setNoUserFound(false);
+        setSearchingUser(false)
         
         if (Number(state?.userDetail?.photos?.length) === 0) setEmpty(true);
         else setEmpty(false);
@@ -39,8 +41,13 @@ function Profile() {
     useEffect(() => {
         window.scrollTo(0, 0);
         dispatch(userNameChanged(userName));
-        dispatch(fetchUser());
+        fetchNewUser()
     }, [userName])
+    
+    function fetchNewUser() {
+        setSearchingUser(true)
+        dispatch(fetchUser());
+    }
     
     function changeToGridView() {
         setListView(false);
@@ -64,7 +71,7 @@ function Profile() {
                 )
             }
             {
-                !noUserFound && (
+                !noUserFound && !searchingUser && (
                     <div className="user_profile">
                         <div className="user_detail flex flex_wrap_wrap align_items_center justify_content_space_around">
                             <img src={state?.userDetail?.profile_image?.large} alt="profile pic" className="profile_pic"/>
