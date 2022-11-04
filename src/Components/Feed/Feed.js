@@ -22,7 +22,7 @@ function Feed() {
     }, [])
 
     useEffect(() => {
-        if (state.imageList.length !== 0) {
+        if (state.imageList.length === 0) {
             setNoData(true);
         }
         else {
