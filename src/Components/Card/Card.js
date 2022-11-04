@@ -5,36 +5,33 @@ import { CgProfile } from "react-icons/cg";
 import { AiOutlineLike } from "react-icons/ai";
 import { userNameChanged } from "../../Redux/Slice";
 import { LazyLoadImage } from "react-lazy-load-image-component";
-import { decode } from "blurhash";
+import { Blurhash } from "react-blurhash-async"
 
 function Card(props) {
+
     let data = [];
     let url = '';
-    
-    const canvas = document.createElement("canvas");
-    const ctx = canvas.getContext("2d");
-    const imageData = ctx.createImageData(240, 288);
-    let pixels = '';
     
     if (props.data) {
         data = props.data;
         url = `/profile/${data?.user?.username}`;
-        
-        pixels = decode(data?.blur_hash, 240, 288);
-        imageData.data.set(pixels);
-        ctx.putImageData(imageData, 0, 0);
     }
+
     const dispatch = useDispatch();
 
     function changeUser() {
         dispatch(userNameChanged(data.user.username));
     }
 
+    const blurImage = <Blurhash className='card_image' hash={data?.blur_hash} width={"var(--cardImageWidth)"} height={"var(--cardImageHeight)"} punch={1} />;
+
+
     return (
         <div key={data?.id} className="card flex flex_direction_column">
+
             <LazyLoadImage 
                 className="card_image"
-                placeholderSrc={canvas.toDataURL()}
+                placeholder={blurImage}
                 src={data?.urls?.regular}
                 alt={data?.alt_description}
             />

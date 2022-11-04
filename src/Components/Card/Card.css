@@ -1,3 +1,8 @@
+* {
+    --cardImageWidth: 20rem;
+    --cardImageHeight: 18rem;
+}
+
 .card {
     width: 20rem;
     padding: 1rem;
@@ -17,8 +22,8 @@
 }
 
 .card_image {
-    width: 20rem;
-    height: 18rem;
+    width: var(--cardImageWidth);
+    height: var(--cardImageHeight);
     background: var(--cardColor);
 	box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
 }
@@ -35,6 +40,9 @@
 }
 
 @media only screen and (max-width: 900px) {
+    * {
+        --cardImageWidth: 100%;
+    }
     .card {
         width: 39vw;
         max-width: 15rem;
@@ -50,12 +58,15 @@
     }
 
     .card_image {
-        width: 100%;
+        width: var(--cardImageWidth);
         max-width: 20rem;
     }
 }
 
 @media only screen and (max-width: 600px) {
+    * {
+        --cardImageWidth: 100%;
+    }
     .card {
         width: 39vw;
         margin: 1rem 0;
@@ -71,8 +82,7 @@
     }
 
     .card_image {
-        width: 100%;
-        max-width: 20rem;
+        width: var(--cardImageWidth);
         max-height: 10rem;
     }
 
