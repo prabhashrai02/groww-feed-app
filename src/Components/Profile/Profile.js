@@ -1,8 +1,8 @@
 import { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import "./Profile.css";
 import { useSelector, useDispatch } from "react-redux";
-import { fetchUser, userNameChanged, removeError } from "../../Redux/Slice";
+import { fetchUser, userNameChanged, removeError, removeUser } from "../../Redux/Slice";
 import { AiOutlineUnorderedList } from "react-icons/ai";
 import { TfiLayoutGrid2 } from "react-icons/tfi";
 import ListView from "../ListView/ListView";
@@ -12,6 +12,7 @@ function Profile() {
     const state = useSelector((state) => state.feedData);
     const dispatch = useDispatch();
     const { userName } = useParams();
+    const urlHistory = useNavigate();
     const [listView, setListView] = useState(false);
     const [empty, setEmpty] = useState(false);
     const [noUserFound, setNoUserFound] = useState(false);
@@ -31,21 +32,20 @@ function Profile() {
         if (state?.userDetail?.username !== undefined) {
             dispatch(removeError(''));
         }
-
-        if (state.error) {
+        else {
             setNoUserFound(true)
         }
-
     }, [state])
 
     useEffect(() => {
         window.scrollTo(0, 0);
         dispatch(userNameChanged(userName));
         fetchNewUser()
-    }, [userName])
+    }, [urlHistory])
     
     function fetchNewUser() {
         setSearchingUser(true)
+        dispatch(removeUser());
         dispatch(fetchUser());
     }
     
@@ -60,7 +60,7 @@ function Profile() {
     return (
         <div className="profile flex flex_direction_column align_items_center">
             {
-                noUserFound && (
+                noUserFound && !searchingUser && (
                     <div className="user_profile">
                         <div className="user_detail flex flex_wrap_wrap align_items_center justify_content_space_around">
                             <div className="view_zero_post no_user">

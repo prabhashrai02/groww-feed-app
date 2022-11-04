@@ -79,6 +79,9 @@ export const Slice = createSlice({
         },
         removeError: (state, arg) => {
             state.error = arg.payload;
+        },
+        removeUser: (state) => {
+            state.userDetail = {};
         }
     },
     extraReducers: {
@@ -114,5 +117,5 @@ export const Slice = createSlice({
     }
 });
 
-export const { nextPage, userNameChanged, removeError } = Slice.actions;
+export const { nextPage, userNameChanged, removeError, removeUser } = Slice.actions;
 export default Slice.reducer;
