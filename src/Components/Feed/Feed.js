@@ -50,7 +50,9 @@ function Feed() {
                 {
                     errorOccured && (
                         <div className="feed_error">
-                            {state.error?.errors}!!!
+                            <pre>
+                                {JSON.stringify(state.error)}!!!
+                            </pre>
                         </div>
                     )
                 }

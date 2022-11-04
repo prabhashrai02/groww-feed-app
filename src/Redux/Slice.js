@@ -95,7 +95,7 @@ export const Slice = createSlice({
             }
         },
         [fetchImages.rejected]: (state, action) => {
-            state.error = action.payload;
+            state.error = JSON.parse(JSON.stringify(action.payload));
         },
 
         // checks for async fetching of Userdetail
@@ -118,7 +118,7 @@ export const Slice = createSlice({
             }
         },
         [fetchUser.rejected]: (state, action) => {
-            state.error = action.payload;
+            state.error = JSON.parse(JSON.stringify(action.payload));
         },
     }
 });
