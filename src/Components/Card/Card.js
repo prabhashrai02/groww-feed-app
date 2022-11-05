@@ -5,7 +5,7 @@ import { CgProfile } from "react-icons/cg";
 import { AiOutlineLike } from "react-icons/ai";
 import { userNameChanged } from "../../Redux/Slice";
 import { LazyLoadImage } from "react-lazy-load-image-component";
-import { Blurhash } from "react-blurhash-async"
+import { Blurhash } from "react-blurhash"
 
 function Card(props) {
     const dispatch = useDispatch();
