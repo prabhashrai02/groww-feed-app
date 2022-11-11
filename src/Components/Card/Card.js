@@ -23,7 +23,7 @@ function Card(props) {
     }
 
     // store blur image for placeholder till the original image is loaded
-    const blurImage = <Blurhash className='card_image' hash={data?.blur_hash} width={"var(--cardImageWidth)"} height={"var(--cardImageHeight)"} punch={1} />;
+    const blurImage = data?.blur_hash ? <Blurhash className='card_image' hash={data?.blur_hash} width={"var(--cardImageWidth)"} height={"var(--cardImageHeight)"} punch={1} /> : <div />;
 
 
     return (
